@@ -1,0 +1,6 @@
+id=codm_tex_logger
+name=CODM Texture Tweaks
+version=v0.39
+versionCode=40
+author=Q9 Papyrus, zynn
+description=Smooth texture filtering (default), optional blocky/pixel modes, render scale and frame-time diagnostics for Call of Duty: Mobile. WebUI for KernelSU / SukiSU Ultra / APatch (Magisk: KsuWebUI or MMRL).
