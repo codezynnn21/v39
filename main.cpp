@@ -75,6 +75,10 @@
 #define STATF DIR "codm_tex.status"   /* small key=value file the WebUI reads: how far the module got (written by the game process) */
 #define SCRASHF DIR "scale_crash.txt"   /* marker: written before render scale is applied, cleared after 120 good frames */
 
+/* Forward declaration – required because the function is used in log_gl_info()
+   before its definition appears later in the file. */
+static void write_int_atomic(const char *path, int v);
+
 static std::mutex mu;
 static FILE *lf = nullptr;
 static long lf_bytes = 0;
@@ -715,7 +719,7 @@ static bool read_cpu(int fd, int64_t &run, int64_t &wait) {
     char *p = strrchr(b, ')');
     if (!p) return false;
     unsigned long ut = 0, st = 0;
-    if (sscanf(p + 2, "%*c %*d %*d %*d %*d %*d %*u %*u %*u %*u %*u %lu %lu", &ut, &st) != 2) return false;
+    if (sscanf(p + 2, "%*c %*d %*d %*d %*d %*d %*d %*u %*u %*u %*u %*u %lu %lu", &ut, &st) != 2) return false;
     run = (int64_t)(ut + st) * 10000000LL;
     wait = 0;
     return true;
